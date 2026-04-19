@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CRM.Orders</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="CRM Orders">
+<meta name="theme-color" content="#0c0c10">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230c0c10'/><text y='68' x='50' text-anchor='middle' font-size='52' font-family='Arial' font-weight='bold' fill='%2300e5a0'>C</text></svg>">
+<link rel="manifest" href="/manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -1239,6 +1245,235 @@ body {
 .status-shipped   { background: var(--v-glow); color: var(--v); border: 1px solid var(--v-border); }
 .status-delivered { background: var(--g-glow); color: var(--g); border: 1px solid var(--g-border); }
 .status-cancelled { background: var(--r-glow); color: var(--r); border: 1px solid var(--r-border); }
+
+/* ═══════════════════════════════════════
+   MOBILE — iOS OPTIMIZED
+═══════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* ─ Login ─ */
+  #s-login { padding: 20px 16px; }
+  .login-wrap { max-width: 100%; }
+  .login-card { padding: 24px 20px; border-radius: 16px; }
+
+  /* ─ Manager layout: sidebar → bottom nav ─ */
+  .mgr-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    min-height: 100dvh;
+  }
+
+  .mgr-sidebar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    top: auto;
+    height: auto;
+    flex-direction: row;
+    z-index: 50;
+    border-right: none;
+    border-top: 1px solid var(--line2);
+    padding: 0;
+    overflow: visible;
+  }
+
+  .sidebar-brand { display: none; }
+  .sidebar-nav {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    flex: 1;
+    overflow-x: auto;
+  }
+  .snav-group { display: none; }
+  .snav-item {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 10px 16px;
+    font-size: 10px;
+    border-left: none;
+    border-top: 2px solid transparent;
+    min-width: 70px;
+    flex-shrink: 0;
+    text-align: center;
+  }
+  .snav-item svg { width: 20px; height: 20px; opacity: 0.6; }
+  .snav-item.on {
+    color: var(--g);
+    border-left: none;
+    border-top-color: var(--g);
+    background: var(--g-glow);
+  }
+  .snav-item.on svg { opacity: 1; }
+
+  .sidebar-user-card { display: none; }
+
+  /* Bottom nav logout button */
+  .mobile-logout-btn {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 10px 16px;
+    font-size: 10px;
+    color: var(--fog);
+    background: transparent;
+    border: none;
+    border-top: 2px solid transparent;
+    cursor: pointer;
+    min-width: 70px;
+    flex-shrink: 0;
+    font-family: 'Instrument Sans', sans-serif;
+  }
+  .mobile-logout-btn:hover { color: var(--r); }
+
+  /* ─ Main content ─ */
+  .mgr-main {
+    padding-bottom: 70px; /* space for bottom nav */
+    min-height: 100dvh;
+  }
+
+  .mgr-topbar {
+    padding: 14px 16px;
+    position: sticky;
+    top: 0;
+  }
+  .page-title { font-size: 16px; }
+  .topbar-clock { display: none; }
+
+  /* ─ Stats strip ─ */
+  .stats-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .strip-stat { padding: 12px 14px; gap: 10px; }
+  .strip-icon { width: 30px; height: 30px; border-radius: 7px; }
+  .strip-icon svg { width: 13px; height: 13px; }
+  .strip-n { font-size: 18px; }
+  .strip-l { font-size: 10px; }
+
+  /* ─ Content padding ─ */
+  .mgr-content { padding: 16px; }
+
+  /* ─ Carrier grid: 1 column ─ */
+  .carrier-grid { grid-template-columns: 1fr; gap: 10px; }
+  .carrier-btn { padding: 14px 16px; }
+  .carrier-icon { width: 36px; height: 36px; }
+  .carrier-name { font-size: 14px; }
+
+  /* ─ Form sections ─ */
+  .form-section { padding: 16px; margin-bottom: 10px; }
+  .order-form-grid { grid-template-columns: 1fr; gap: 12px; }
+  .ofg.full { grid-column: 1; }
+  .ofg input, .ofg select {
+    font-size: 16px; /* prevent zoom on iOS */
+    padding: 12px 13px;
+  }
+
+  /* ─ NP fields ─ */
+  .np-fields.on { grid-template-columns: 1fr; }
+
+  /* ─ Actions ─ */
+  .form-actions { flex-direction: column-reverse; gap: 8px; }
+  .btn-clear { width: 100%; text-align: center; }
+  .btn-save-order { width: 100%; justify-content: center; padding: 14px; font-size: 15px; }
+
+  /* ─ Result block ─ */
+  .result-row { flex-wrap: wrap; gap: 6px; }
+  .rk { width: 100%; margin-bottom: 0; }
+  .rv { font-size: 12px; }
+
+  /* ─ Admin layout ─ */
+  .admin-layout { grid-template-columns: 1fr; }
+  .admin-nav {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 56px;
+    z-index: 9;
+    background: var(--ink2);
+  }
+  .nav-group-label { display: none; }
+  .nav-item {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 10px 14px;
+    font-size: 10px;
+    border-left: none;
+    border-bottom: 2px solid transparent;
+    min-width: 80px;
+    flex-shrink: 0;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .nav-item.on {
+    border-left: none;
+    border-bottom-color: var(--v);
+    background: var(--v-glow);
+    color: var(--v);
+  }
+  .admin-content { padding: 16px; }
+
+  /* ─ Tables: card view on mobile ─ */
+  .crm-table thead { display: none; }
+  .crm-table, .crm-table tbody, .crm-table tr, .crm-table td {
+    display: block;
+    width: 100%;
+  }
+  .crm-table tr {
+    border-bottom: 1px solid var(--line2);
+    padding: 12px 16px;
+  }
+  .crm-table tr:last-child { border-bottom: none; }
+  .crm-table td {
+    padding: 3px 0;
+    border-bottom: none;
+    font-size: 13px;
+  }
+  .crm-table td:first-child { font-weight: 600; margin-bottom: 4px; }
+  .row-actions { margin-top: 8px; flex-wrap: wrap; }
+
+  /* ─ Stats cards: 2 columns ─ */
+  .stats-cards { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .stat-num { font-size: 26px; }
+
+  /* ─ Form card ─ */
+  .form-card { max-width: 100%; padding: 18px; }
+  .form-grid { grid-template-columns: 1fr; }
+  .fg.full { grid-column: 1; }
+  .fg input, .fg select { font-size: 16px; }
+
+  /* ─ Error card ─ */
+  .err-card { max-width: 100%; padding: 18px; }
+  .block-row { padding: 14px; }
+
+  /* ─ Error modal ─ */
+  .err-modal { width: calc(100vw - 32px); margin: 0 16px; }
+
+  /* ─ Admin bar ─ */
+  .admin-bar { padding: 0 16px; }
+  .bar-user { display: none; }
+
+  /* ─ Safe area for iPhone notch ─ */
+  .mgr-sidebar {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  body { padding-top: env(safe-area-inset-top); }
+}
+
+/* Extra small phones */
+@media (max-width: 390px) {
+  .snav-item { min-width: 60px; padding: 10px 10px; font-size: 9px; }
+  .mgr-content { padding: 12px; }
+  .carrier-btn { padding: 12px 14px; }
+}
 </style>
 </head>
 <body>
