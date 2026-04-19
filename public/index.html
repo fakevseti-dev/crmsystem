@@ -1878,8 +1878,8 @@ body {
    STATE
 ───────────────────────────────────── */
 const API = '/api';
-let token = sessionStorage.getItem('crm_token') || null;
-let me = JSON.parse(sessionStorage.getItem('crm_user') || 'null');
+let token = localStorage.getItem('crm_token') || null;
+let me = JSON.parse(localStorage.getItem('crm_user') || 'null');
 let carrier = null;
 let npOn = false;
 let payChoice = 'seller';
@@ -1935,8 +1935,8 @@ async function doLogin() {
 
   token = r.data.token;
   me = r.data.user;
-  sessionStorage.setItem('crm_token', token);
-  sessionStorage.setItem('crm_user', JSON.stringify(me));
+  localStorage.setItem('crm_token', token);
+  localStorage.setItem('crm_user', JSON.stringify(me));
 
   if (me.role === 'admin') {
     showScreen('admin');
@@ -1954,7 +1954,7 @@ document.addEventListener('keydown', e => {
 async function doLogout() {
   await api('POST', '/auth/logout');
   token = null; me = null;
-  sessionStorage.clear();
+  localStorage.clear();
   document.getElementById('login-u').value = '';
   document.getElementById('login-p').value = '';
   document.getElementById('login-err').classList.remove('show');
