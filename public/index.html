@@ -1247,232 +1247,166 @@ body {
 .status-cancelled { background: var(--r-glow); color: var(--r); border: 1px solid var(--r-border); }
 
 /* ═══════════════════════════════════════
-   MOBILE — iOS OPTIMIZED
+   MOBILE — iOS PROFESSIONAL
 ═══════════════════════════════════════ */
 @media (max-width: 768px) {
+  html { -webkit-text-size-adjust: 100%; }
 
-  /* ─ Login ─ */
-  #s-login { padding: 20px 16px; }
-  .login-wrap { max-width: 100%; }
-  .login-card { padding: 24px 20px; border-radius: 16px; }
+  /* Login */
+  #s-login { padding: 0; min-height: 100dvh; justify-content: flex-start; }
+  .login-bg-grid { display: none; }
+  .login-wrap { max-width: 100%; height: 100dvh; display: flex; flex-direction: column; justify-content: center; padding: 24px 20px; }
+  .login-brand { margin-bottom: 28px; }
+  .login-wordmark { font-size: 22px; }
+  .login-card { padding: 22px 18px; border-radius: 16px; }
+  .field-group input { font-size: 16px; padding: 13px 14px; }
+  .btn-primary { padding: 14px; font-size: 15px; border-radius: 12px; }
 
-  /* ─ Manager layout: sidebar → bottom nav ─ */
-  .mgr-layout {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr auto;
-    min-height: 100dvh;
-  }
+  /* Manager: flex column */
+  .mgr-layout { display: flex; flex-direction: column; min-height: 100dvh; }
 
+  /* Sidebar → fixed bottom tab bar */
   .mgr-sidebar {
     position: fixed;
-    bottom: 0; left: 0; right: 0;
-    top: auto;
+    bottom: 0; left: 0; right: 0; top: auto;
     height: auto;
     flex-direction: row;
-    z-index: 50;
+    align-items: stretch;
+    z-index: 100;
     border-right: none;
     border-top: 1px solid var(--line2);
-    padding: 0;
-    overflow: visible;
+    padding: 0 0 env(safe-area-inset-bottom) 0;
+    background: rgba(14,14,18,0.96);
   }
-
   .sidebar-brand { display: none; }
-  .sidebar-nav {
-    display: flex;
-    flex-direction: row;
-    padding: 0;
-    flex: 1;
-    overflow-x: auto;
-  }
+  .sidebar-user-card { display: none; }
+  .sidebar-nav { display: flex; flex-direction: row; padding: 0; flex: 1; overflow: hidden; }
   .snav-group { display: none; }
   .snav-item {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-    padding: 10px 16px;
-    font-size: 10px;
-    border-left: none;
-    border-top: 2px solid transparent;
-    min-width: 70px;
-    flex-shrink: 0;
-    text-align: center;
+    flex: 1; flex-direction: column; align-items: center; justify-content: center;
+    gap: 3px; padding: 8px 4px; font-size: 9px; letter-spacing: 0;
+    border-left: none; border-top: 2px solid transparent; text-align: center; min-width: 0;
   }
-  .snav-item svg { width: 20px; height: 20px; opacity: 0.6; }
-  .snav-item.on {
-    color: var(--g);
-    border-left: none;
-    border-top-color: var(--g);
-    background: var(--g-glow);
-  }
+  .snav-item svg { width: 22px; height: 22px; opacity: 0.5; }
+  .snav-item.on { color: var(--g); border-left: none; border-top-color: var(--g); background: transparent; }
   .snav-item.on svg { opacity: 1; }
-
-  .sidebar-user-card { display: none; }
-
-  /* Bottom nav logout button */
   .mobile-logout-btn {
-    display: flex !important;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-    padding: 10px 16px;
-    font-size: 10px;
-    color: var(--fog);
-    background: transparent;
-    border: none;
-    border-top: 2px solid transparent;
-    cursor: pointer;
-    min-width: 70px;
-    flex-shrink: 0;
-    font-family: 'Instrument Sans', sans-serif;
-  }
-  .mobile-logout-btn:hover { color: var(--r); }
-
-  /* ─ Main content ─ */
-  .mgr-main {
-    padding-bottom: 70px; /* space for bottom nav */
-    min-height: 100dvh;
+    display: flex !important; flex: 1; flex-direction: column; align-items: center;
+    justify-content: center; gap: 3px; padding: 8px 4px; font-size: 9px; color: var(--fog);
+    background: transparent; border: none; border-top: 2px solid transparent;
+    cursor: pointer; font-family: "Instrument Sans", sans-serif;
   }
 
-  .mgr-topbar {
-    padding: 14px 16px;
-    position: sticky;
-    top: 0;
-  }
-  .page-title { font-size: 16px; }
+  /* Main */
+  .mgr-main { flex: 1; padding-bottom: calc(58px + env(safe-area-inset-bottom)); overflow-y: auto; }
+  .mgr-topbar { padding: 12px 16px; height: 50px; }
+  .page-title { font-size: 15px; }
+  .page-title .sub { font-size: 11px; }
   .topbar-clock { display: none; }
 
-  /* ─ Stats strip ─ */
-  .stats-strip {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .strip-stat { padding: 12px 14px; gap: 10px; }
-  .strip-icon { width: 30px; height: 30px; border-radius: 7px; }
-  .strip-icon svg { width: 13px; height: 13px; }
-  .strip-n { font-size: 18px; }
+  /* Stats strip 2x2 */
+  .stats-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); }
+  .strip-stat { padding: 10px 12px; gap: 8px; }
+  .strip-icon { width: 28px; height: 28px; border-radius: 7px; flex-shrink: 0; }
+  .strip-icon svg { width: 12px; height: 12px; }
+  .strip-n { font-size: 16px; }
   .strip-l { font-size: 10px; }
 
-  /* ─ Content padding ─ */
-  .mgr-content { padding: 16px; }
+  /* Content */
+  .mgr-content { padding: 12px 14px; }
 
-  /* ─ Carrier grid: 1 column ─ */
-  .carrier-grid { grid-template-columns: 1fr; gap: 10px; }
-  .carrier-btn { padding: 14px 16px; }
-  .carrier-icon { width: 36px; height: 36px; }
-  .carrier-name { font-size: 14px; }
+  /* Carrier */
+  .carrier-grid { grid-template-columns: 1fr; gap: 8px; margin-bottom: 14px; }
+  .carrier-btn { padding: 12px 14px; border-radius: 10px; }
+  .carrier-icon { width: 32px; height: 32px; border-radius: 8px; }
+  .carrier-icon svg { width: 15px; height: 15px; }
+  .carrier-name { font-size: 13px; }
+  .carrier-desc { font-size: 11px; }
 
-  /* ─ Form sections ─ */
-  .form-section { padding: 16px; margin-bottom: 10px; }
-  .order-form-grid { grid-template-columns: 1fr; gap: 12px; }
+  /* Forms */
+  .form-section { padding: 14px; margin-bottom: 8px; border-radius: 10px; }
+  .fs-header { margin-bottom: 12px; }
+  .fs-title { font-size: 12px; }
+  .order-form-grid { grid-template-columns: 1fr; gap: 10px; }
   .ofg.full { grid-column: 1; }
-  .ofg input, .ofg select {
-    font-size: 16px; /* prevent zoom on iOS */
-    padding: 12px 13px;
-  }
+  .ofg input, .ofg select, .ofg textarea { font-size: 16px; padding: 11px 12px; border-radius: 9px; }
+  .ofg label { font-size: 10px; }
+  .field-hint { font-size: 10px; }
+  .np-fields.on { grid-template-columns: 1fr; gap: 10px; }
+  .pay-opt { padding: 8px 12px; font-size: 13px; }
 
-  /* ─ NP fields ─ */
-  .np-fields.on { grid-template-columns: 1fr; }
+  /* Actions */
+  .form-actions { flex-direction: column-reverse; gap: 8px; margin-top: 4px; }
+  .btn-clear { width: 100%; text-align: center; padding: 12px; }
+  .btn-save-order { width: 100%; justify-content: center; padding: 14px; font-size: 15px; border-radius: 12px; }
 
-  /* ─ Actions ─ */
-  .form-actions { flex-direction: column-reverse; gap: 8px; }
-  .btn-clear { width: 100%; text-align: center; }
-  .btn-save-order { width: 100%; justify-content: center; padding: 14px; font-size: 15px; }
+  /* Result */
+  .result-block { border-radius: 10px; }
+  .result-head { padding: 11px 14px; }
+  .result-row { padding: 9px 14px; flex-wrap: wrap; gap: 3px; }
+  .rk { width: 100%; font-size: 10px; }
+  .rv { font-size: 12px; flex: 1; }
+  .copy-btn { padding: 3px 8px; font-size: 10px; }
 
-  /* ─ Result block ─ */
-  .result-row { flex-wrap: wrap; gap: 6px; }
-  .rk { width: 100%; margin-bottom: 0; }
-  .rv { font-size: 12px; }
+  /* Orders */
+  .orders-toolbar { flex-direction: column; gap: 8px; }
+  .search-box { width: 100%; font-size: 16px; }
+  .filter-btn { width: 100%; text-align: center; }
 
-  /* ─ Admin layout ─ */
+  /* Tables as cards */
+  .table-card { border-radius: 10px; }
+  .crm-table thead { display: none; }
+  .crm-table, .crm-table tbody, .crm-table tr, .crm-table td { display: block; width: 100%; }
+  .crm-table tr { border-bottom: 1px solid var(--line2); padding: 12px 14px; }
+  .crm-table tr:last-child { border-bottom: none; }
+  .crm-table td { padding: 2px 0; border-bottom: none; font-size: 12px; }
+  .crm-table td:first-child { font-weight: 600; font-size: 13px; margin-bottom: 3px; }
+  .row-actions { margin-top: 8px; flex-wrap: wrap; gap: 6px; }
+  .act-btn { padding: 6px 12px; font-size: 12px; }
+
+  /* Admin */
+  .admin-bar { padding: 0 14px; height: 50px; }
+  .bar-user { display: none; }
   .admin-layout { grid-template-columns: 1fr; }
   .admin-nav {
-    display: flex;
-    flex-direction: row;
-    overflow-x: auto;
-    padding: 0;
-    border-right: none;
-    border-bottom: 1px solid var(--line);
-    position: sticky;
-    top: 56px;
-    z-index: 9;
-    background: var(--ink2);
+    display: flex; flex-direction: row; overflow-x: auto;
+    -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    padding: 0; border-right: none; border-bottom: 1px solid var(--line2);
+    position: sticky; top: 50px; z-index: 9; background: var(--ink2);
   }
+  .admin-nav::-webkit-scrollbar { display: none; }
   .nav-group-label { display: none; }
   .nav-item {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-    padding: 10px 14px;
-    font-size: 10px;
-    border-left: none;
-    border-bottom: 2px solid transparent;
-    min-width: 80px;
-    flex-shrink: 0;
-    text-align: center;
-    white-space: nowrap;
+    flex-direction: column; align-items: center; gap: 3px;
+    padding: 9px 14px; font-size: 10px; border-left: none;
+    border-bottom: 2px solid transparent; min-width: 72px; flex-shrink: 0;
+    white-space: nowrap; text-align: center;
   }
-  .nav-item.on {
-    border-left: none;
-    border-bottom-color: var(--v);
-    background: var(--v-glow);
-    color: var(--v);
-  }
-  .admin-content { padding: 16px; }
-
-  /* ─ Tables: card view on mobile ─ */
-  .crm-table thead { display: none; }
-  .crm-table, .crm-table tbody, .crm-table tr, .crm-table td {
-    display: block;
-    width: 100%;
-  }
-  .crm-table tr {
-    border-bottom: 1px solid var(--line2);
-    padding: 12px 16px;
-  }
-  .crm-table tr:last-child { border-bottom: none; }
-  .crm-table td {
-    padding: 3px 0;
-    border-bottom: none;
-    font-size: 13px;
-  }
-  .crm-table td:first-child { font-weight: 600; margin-bottom: 4px; }
-  .row-actions { margin-top: 8px; flex-wrap: wrap; }
-
-  /* ─ Stats cards: 2 columns ─ */
-  .stats-cards { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .stat-num { font-size: 26px; }
-
-  /* ─ Form card ─ */
-  .form-card { max-width: 100%; padding: 18px; }
+  .nav-item svg { width: 16px; height: 16px; }
+  .nav-item.on { border-left: none; border-bottom-color: var(--v); color: var(--v); background: transparent; }
+  .admin-content { padding: 14px; }
+  .form-card { max-width: 100%; padding: 16px; }
   .form-grid { grid-template-columns: 1fr; }
   .fg.full { grid-column: 1; }
-  .fg input, .fg select { font-size: 16px; }
-
-  /* ─ Error card ─ */
-  .err-card { max-width: 100%; padding: 18px; }
+  .fg input, .fg select { font-size: 16px; padding: 11px 12px; }
+  .err-card { max-width: 100%; padding: 16px; }
   .block-row { padding: 14px; }
+  .stats-cards { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .stat-num { font-size: 24px; }
 
-  /* ─ Error modal ─ */
-  .err-modal { width: calc(100vw - 32px); margin: 0 16px; }
-
-  /* ─ Admin bar ─ */
-  .admin-bar { padding: 0 16px; }
-  .bar-user { display: none; }
-
-  /* ─ Safe area for iPhone notch ─ */
-  .mgr-sidebar {
-    padding-bottom: env(safe-area-inset-bottom);
-  }
-  body { padding-top: env(safe-area-inset-top); }
+  /* Error modal */
+  .err-modal { width: calc(100vw - 28px); border-radius: 14px; }
+  .err-body { padding: 14px 16px; }
+  .err-top { padding: 16px 16px 12px; }
+  .err-trace { font-size: 10px; line-height: 1.7; }
 }
 
-/* Extra small phones */
-@media (max-width: 390px) {
-  .snav-item { min-width: 60px; padding: 10px 10px; font-size: 9px; }
-  .mgr-content { padding: 12px; }
-  .carrier-btn { padding: 12px 14px; }
+@media (max-width: 375px) {
+  .mgr-content { padding: 10px 12px; }
+  .form-section { padding: 12px; }
+  .carrier-btn { padding: 10px 12px; }
+  .snav-item { font-size: 8px; }
+  .snav-item svg { width: 20px; height: 20px; }
 }
 </style>
 </head>
@@ -1717,6 +1651,10 @@ body {
           <svg viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M1 6.5l7 4 7-4" stroke="currentColor" stroke-width="1.3"/></svg>
           Почта России
         </div>
+        <button class="mobile-logout-btn" style="display:none" onclick="doLogout()">
+          <svg width="22" height="22" viewBox="0 0 16 16" fill="none"><path d="M6 2H3a1 1 0 00-1 1v10a1 1 0 001 1h3M10 11l3-3-3-3M13 8H6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Выйти
+        </button>
       </nav>
       <div class="sidebar-user-card">
         <div class="suc-top">
