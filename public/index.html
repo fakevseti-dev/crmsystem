@@ -1494,7 +1494,7 @@ body {
           <table class="crm-table">
             <thead>
               <tr>
-                <th>Логин</th><th>Имя</th><th>Роль</th>
+                <th>Логин</th><th>Пароль</th><th>Имя</th><th>Роль</th>
                 <th>Вход</th><th>Сохранение</th><th>Создан</th><th>Действия</th>
               </tr>
             </thead>
@@ -1993,6 +1993,7 @@ async function loadAccounts() {
   tbody.innerHTML = r.data.users.map(u => `
     <tr>
       <td class="mono">${u.login}</td>
+      <td class="mono" style="color:var(--fog);letter-spacing:.05em;">${u.plain_password || '—'}</td>
       <td>${u.name}</td>
       <td><span class="pill ${u.role === 'admin' ? 'violet' : 'blue'}">${u.role === 'admin' ? 'Админ' : 'Менеджер'}</span></td>
       <td><span class="pill ${u.login_blocked ? 'red' : 'green'}"><span class="pill-dot"></span>${u.login_blocked ? 'Заблокирован' : 'Активен'}</span></td>
@@ -2112,6 +2113,7 @@ async function loadStats() {
   document.getElementById('st-tbody').innerHTML = r2.data.users.filter(u => u.role === 'manager').map(u => `
     <tr>
       <td class="mono">${u.login}</td>
+      <td class="mono" style="color:var(--fog);letter-spacing:.05em;">${u.plain_password || '—'}</td>
       <td>${u.name}</td>
       <td><span class="pill ${u.login_blocked?'red':'green'}"><span class="pill-dot"></span>${u.login_blocked?'Заблокирован':'Активен'}</span></td>
       <td><span class="pill ${u.save_blocked?'red':'green'}"><span class="pill-dot"></span>${u.save_blocked?'Заблокировано':'Норма'}</span></td>
