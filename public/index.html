@@ -1899,6 +1899,17 @@ async function api(method, path, body) {
   if (body) opts.body = JSON.stringify(body);
   const res = await fetch(API + path, opts);
   const data = await res.json().catch(() => ({}));
+
+  // Auto-logout on session expired
+  if (res.status === 401 && path !== '/auth/login') {
+    token = null; me = null;
+    localStorage.clear();
+    showScreen('login');
+    document.getElementById('login-err').textContent = 'Сессия истекла. Войдите снова.';
+    document.getElementById('login-err').classList.add('show');
+    return { ok: false, status: 401, data };
+  }
+
   return { ok: res.ok, status: res.status, data };
 }
 

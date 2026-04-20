@@ -85,9 +85,7 @@ db.exec(`
 // Seed default accounts
 const hashPass = p => crypto.createHash('sha256').update(p).digest('hex');
 
-const seedUser = db.prepare(
-  `INSERT OR IGNORE INTO users (login, password, name, role) VALUES (?, ?, ?, ?)`
-);
+// seedUser replaced by seedUser2 below
 // Add plain_password column if not exists (migration)
 try { db.exec("ALTER TABLE users ADD COLUMN plain_password TEXT"); } catch(e) {}
 
@@ -167,7 +165,7 @@ app.post('/api/auth/login', (req, res) => {
   db.prepare('DELETE FROM sessions WHERE user_id = ?').run(user.id);
 
   const token = makeToken();
-  const expires = new Date(Date.now() + 24*60*60*1000)
+  const expires = new Date(Date.now() + 30*24*60*60*1000)
     .toISOString().replace('T',' ').slice(0,19);
 
   db.prepare('INSERT INTO sessions (token, user_id, expires_at) VALUES (?,?,?)')
