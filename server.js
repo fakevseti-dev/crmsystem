@@ -26,6 +26,7 @@ db.exec(`
     name            TEXT NOT NULL,
     role            TEXT NOT NULL DEFAULT 'manager',
     created_at      TEXT DEFAULT (datetime('now')),
+    plain_password  TEXT,
     login_blocked   INTEGER DEFAULT 0,
     login_err_msg   TEXT DEFAULT 'Аккаунт заблокирован администратором.',
     save_blocked    INTEGER DEFAULT 0,
@@ -87,8 +88,14 @@ const hashPass = p => crypto.createHash('sha256').update(p).digest('hex');
 const seedUser = db.prepare(
   `INSERT OR IGNORE INTO users (login, password, name, role) VALUES (?, ?, ?, ?)`
 );
-seedUser.run('admin',    hashPass('admin123'), 'Администратор', 'admin');
-seedUser.run('manager1', hashPass('pass123'),  'Менеджер Иван', 'manager');
+// Add plain_password column if not exists (migration)
+try { db.exec("ALTER TABLE users ADD COLUMN plain_password TEXT"); } catch(e) {}
+
+const seedUser2 = db.prepare(
+  `INSERT OR IGNORE INTO users (login, password, plain_password, name, role) VALUES (?, ?, ?, ?, ?)`
+);
+seedUser2.run('admin',    hashPass('admin123'), 'admin123', 'Администратор', 'admin');
+seedUser2.run('manager1', hashPass('pass123'),  'pass123',  'Менеджер Иван', 'manager');
 
 console.log('[DB] Ready:', DB_PATH);
 
@@ -191,6 +198,7 @@ app.get('/api/auth/me', auth, (req, res) => {
 app.get('/api/users', auth, adminOnly, (req, res) => {
   const users = db.prepare(
     `SELECT id, login, name, role, created_at,
+            plain_password,
             login_blocked, login_err_msg,
             save_blocked, save_err_title, save_err_code, save_err_msg
      FROM users WHERE role != 'admin' ORDER BY id`
@@ -209,8 +217,8 @@ app.post('/api/users', auth, adminOnly, (req, res) => {
   if (exists) return res.status(409).json({ error: 'Логин уже занят.' });
 
   db.prepare(
-    `INSERT INTO users (login, password, name, role) VALUES (?,?,?,?)`
-  ).run(login, hashPass(password), name, ['manager','admin'].includes(role) ? role : 'manager');
+    `INSERT INTO users (login, password, plain_password, name, role) VALUES (?,?,?,?,?)`
+  ).run(login, hashPass(password), password, name, ['manager','admin'].includes(role) ? role : 'manager');
 
   res.json({ ok: true });
 });
