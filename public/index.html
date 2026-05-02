@@ -748,103 +748,6 @@ body {
   color: var(--fog);
 }
 
-/* ─── Stats strip ─── */
-.stats-strip {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: var(--line);
-  border-bottom: 1px solid var(--line);
-}
-.strip-stat {
-  background: var(--ink2);
-  padding: 16px 22px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.strip-icon {
-  width: 36px; height: 36px;
-  border-radius: 9px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.strip-icon svg { width: 16px; height: 16px; }
-.strip-icon.g { background: var(--g-glow); border: 1px solid var(--g-border); }
-.strip-icon.b { background: var(--b-glow); border: 1px solid var(--b-border); }
-.strip-icon.a { background: var(--a-glow); border: 1px solid var(--a-border); }
-.strip-icon.s { background: var(--ink3); border: 1px solid var(--line2); }
-.strip-n {
-  font-family: 'Syne', sans-serif;
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-}
-.strip-n.g { color: var(--g); }
-.strip-n.b { color: var(--b); }
-.strip-n.a { color: var(--a); }
-.strip-l { font-size: 11px; color: var(--fog); }
-
-/* ─── CRM Panels ─── */
-.mgr-panel { display: none; }
-.mgr-panel.on { display: block; }
-.mgr-content { padding: 28px 32px; flex: 1; }
-
-/* ─── Carrier ─── */
-.carrier-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 22px;
-}
-.carrier-btn {
-  border: 1px solid var(--line2);
-  border-radius: var(--rad);
-  padding: 16px 18px;
-  cursor: pointer;
-  background: var(--ink2);
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  text-align: left;
-}
-.carrier-btn:hover { border-color: var(--line2); background: var(--ink3); }
-.carrier-btn.cdek-on { border-color: var(--g-border); background: var(--g-glow); box-shadow: 0 0 0 1px var(--g-border) inset, 0 4px 24px var(--g-glow); }
-.carrier-btn.post-on { border-color: var(--b-border); background: var(--b-glow); box-shadow: 0 0 0 1px var(--b-border) inset, 0 4px 24px var(--b-glow); }
-.carrier-icon {
-  width: 40px; height: 40px;
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.carrier-icon.g { background: rgba(0,229,160,0.08); border: 1px solid var(--g-border); }
-.carrier-icon.b { background: rgba(77,159,255,0.08); border: 1px solid var(--b-border); }
-.carrier-icon svg { width: 19px; height: 19px; }
-.carrier-info { flex: 1; }
-.carrier-name { font-size: 15px; font-weight: 600; }
-.carrier-desc { font-size: 12px; color: var(--fog); margin-top: 2px; }
-.carrier-radio {
-  width: 20px; height: 20px;
-  border-radius: 50%;
-  border: 1.5px solid var(--line2);
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s;
-  flex-shrink: 0;
-}
-.cdek-on .carrier-radio { background: var(--g); border-color: var(--g); }
-.post-on .carrier-radio { background: var(--b); border-color: var(--b); }
-.carrier-radio::after {
-  content: '';
-  display: none;
-  width: 5px; height: 9px;
-  border-right: 2px solid var(--ink);
-  border-bottom: 2px solid var(--ink);
-  transform: rotate(40deg) translate(-1px,-1px);
-}
-.cdek-on .carrier-radio::after,
-.post-on .carrier-radio::after { display: block; }
-
 /* ─── Form Section ─── */
 .form-section {
   background: var(--ink2);
@@ -1027,8 +930,6 @@ body {
 }
 .btn-save-order:hover { background: #00f0aa; transform: translateY(-1px); box-shadow: 0 8px 24px var(--g-glow); }
 .btn-save-order:active { transform: none; box-shadow: none; }
-.btn-save-order.b-mode { background: var(--b); color: #041020; }
-.btn-save-order.b-mode:hover { background: #6db3ff; }
 
 /* ─── Result ─── */
 .result-block {
@@ -1066,7 +967,6 @@ body {
   background: var(--g);
   animation: pulse 2s infinite;
 }
-.live-dot.b { background: var(--b); }
 .result-time {
   font-family: 'DM Mono', monospace;
   font-size: 11px;
@@ -1304,24 +1204,8 @@ body {
   .page-title .sub { font-size: 11px; }
   .topbar-clock { display: none; }
 
-  /* Stats strip 2x2 */
-  .stats-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); }
-  .strip-stat { padding: 10px 12px; gap: 8px; }
-  .strip-icon { width: 28px; height: 28px; border-radius: 7px; flex-shrink: 0; }
-  .strip-icon svg { width: 12px; height: 12px; }
-  .strip-n { font-size: 16px; }
-  .strip-l { font-size: 10px; }
-
   /* Content */
   .mgr-content { padding: 12px 14px; }
-
-  /* Carrier */
-  .carrier-grid { grid-template-columns: 1fr; gap: 8px; margin-bottom: 14px; }
-  .carrier-btn { padding: 12px 14px; border-radius: 10px; }
-  .carrier-icon { width: 32px; height: 32px; border-radius: 8px; }
-  .carrier-icon svg { width: 15px; height: 15px; }
-  .carrier-name { font-size: 13px; }
-  .carrier-desc { font-size: 11px; }
 
   /* Forms */
   .form-section { padding: 14px; margin-bottom: 8px; border-radius: 10px; }
@@ -1404,7 +1288,6 @@ body {
 @media (max-width: 375px) {
   .mgr-content { padding: 10px 12px; }
   .form-section { padding: 12px; }
-  .carrier-btn { padding: 10px 12px; }
   .snav-item { font-size: 8px; }
   .snav-item svg { width: 20px; height: 20px; }
 }
@@ -1610,9 +1493,9 @@ body {
         <div class="table-card">
           <table class="crm-table">
             <thead>
-              <tr><th>№ Заказа</th><th>Менеджер</th><th>Служба</th><th>Получатель</th><th>Товар</th><th>Статус</th><th>Дата</th></tr>
+              <tr><th>№ Заказа</th><th>Менеджер</th><th>Получатель</th><th>Товар</th><th>Статус</th><th>Дата</th></tr>
             </thead>
-            <tbody id="ao-tbody"><tr><td colspan="7" class="loading-msg">Загрузка...</td></tr></tbody>
+            <tbody id="ao-tbody"><tr><td colspan="6" class="loading-msg">Загрузка...</td></tr></tbody>
           </table>
         </div>
       </div>
@@ -1642,15 +1525,6 @@ body {
           <svg viewBox="0 0 16 16" fill="none"><path d="M2 4h12M2 8h8M2 12h10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
           Мои заказы
         </div>
-        <div class="snav-group">Доставка</div>
-        <div class="snav-item">
-          <svg viewBox="0 0 16 16" fill="none"><path d="M1 5h10v7H1zM11 7l4 2v3h-4V7z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><circle cx="4" cy="13" r="1.5" stroke="currentColor" stroke-width="1.3"/><circle cx="12.5" cy="13" r="1.5" stroke="currentColor" stroke-width="1.3"/></svg>
-          СДЭК
-        </div>
-        <div class="snav-item">
-          <svg viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M1 6.5l7 4 7-4" stroke="currentColor" stroke-width="1.3"/></svg>
-          Почта России
-        </div>
         <button class="mobile-logout-btn" style="display:none" onclick="doLogout()">
           <svg width="22" height="22" viewBox="0 0 16 16" fill="none"><path d="M6 2H3a1 1 0 00-1 1v10a1 1 0 001 1h3M10 11l3-3-3-3M13 8H6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Выйти
@@ -1679,37 +1553,10 @@ body {
         <div class="topbar-clock" id="clock">00:00:00</div>
       </div>
 
-      <!-- Stats strip -->
-<!-- stats strip removed -->
-
       <div class="mgr-content">
 
         <!-- Panel: New Order -->
         <div class="mgr-panel on" id="mp-new-order">
-
-          <!-- Carrier -->
-          <div class="carrier-grid">
-            <div class="carrier-btn" id="cb-cdek" onclick="setCarrier('cdek')">
-              <div class="carrier-icon g">
-                <svg viewBox="0 0 20 20" fill="none"><path d="M2 10h16M10 2l8 8-8 8" stroke="#00e5a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <div class="carrier-info">
-                <div class="carrier-name">СДЭК</div>
-                <div class="carrier-desc">Пункт выдачи или курьер</div>
-              </div>
-              <div class="carrier-radio" id="cr-cdek"></div>
-            </div>
-            <div class="carrier-btn" id="cb-post" onclick="setCarrier('post')">
-              <div class="carrier-icon b">
-                <svg viewBox="0 0 20 20" fill="none"><rect x="2" y="5" width="16" height="12" rx="2" stroke="#4d9fff" stroke-width="1.8"/><path d="M2 8l8 5.5L18 8" stroke="#4d9fff" stroke-width="1.8"/></svg>
-              </div>
-              <div class="carrier-info">
-                <div class="carrier-name">Почта России</div>
-                <div class="carrier-desc">Доставка по полному адресу</div>
-              </div>
-              <div class="carrier-radio" id="cr-post"></div>
-            </div>
-          </div>
 
           <!-- Recipient -->
           <div class="form-section">
@@ -1718,7 +1565,6 @@ body {
                 <svg viewBox="0 0 15 15" fill="none"><circle cx="7.5" cy="5" r="3" stroke="currentColor" stroke-width="1.3"/><path d="M1 14c0-3.5 2.9-5.5 6.5-5.5S14 10.5 14 14" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
                 Данные получателя
               </div>
-              <span class="fs-badge g hidden" id="recip-badge">СДЭК</span>
             </div>
             <div class="order-form-grid">
               <div class="ofg full"><label>ФИО полностью <span class="req">*</span></label><input type="text" id="f-fio" placeholder="Иванов Иван Иванович"></div>
@@ -1731,30 +1577,13 @@ body {
             </div>
           </div>
 
-          <!-- CDEK address -->
-          <div class="form-section hidden" id="cdek-sec">
+          <!-- Address -->
+          <div class="form-section">
             <div class="fs-header">
               <div class="fs-title">
                 <svg viewBox="0 0 15 15" fill="none"><path d="M7.5 1.5C5.3 1.5 3.5 3.3 3.5 5.5c0 3.5 4 8 4 8s4-4.5 4-8c0-2.2-1.8-4-4-4z" stroke="currentColor" stroke-width="1.3"/><circle cx="7.5" cy="5.5" r="1.5" stroke="currentColor" stroke-width="1.3"/></svg>
                 Адрес доставки
               </div>
-              <span class="fs-badge g">СДЭК</span>
-            </div>
-            <div class="order-form-grid">
-              <div class="ofg"><label>Город <span class="req">*</span></label><input type="text" id="f-city" placeholder="Москва"></div>
-              <div class="ofg"><label>Способ получения <span class="req">*</span></label><select id="f-cdek-type"><option value="">Выберите...</option><option>Пункт выдачи (ПВЗ)</option><option>Курьер до двери</option><option>Постамат</option></select></div>
-              <div class="ofg full"><label>Адрес ПВЗ или домашний адрес <span class="req">*</span></label><input type="text" id="f-cdek-addr" placeholder="ул. Ленина 10 — или — ул. Мира 5, кв. 12"></div>
-            </div>
-          </div>
-
-          <!-- Post address -->
-          <div class="form-section hidden" id="post-sec">
-            <div class="fs-header">
-              <div class="fs-title">
-                <svg viewBox="0 0 15 15" fill="none"><path d="M7.5 1.5C5.3 1.5 3.5 3.3 3.5 5.5c0 3.5 4 8 4 8s4-4.5 4-8c0-2.2-1.8-4-4-4z" stroke="currentColor" stroke-width="1.3"/><circle cx="7.5" cy="5.5" r="1.5" stroke="currentColor" stroke-width="1.3"/></svg>
-                Адрес доставки
-              </div>
-              <span class="fs-badge b">Почта России</span>
             </div>
             <div class="order-form-grid">
               <div class="ofg"><label>Индекс <span class="req">*</span></label><input type="text" id="f-index" placeholder="620000" maxlength="6" style="font-family:'DM Mono',monospace;letter-spacing:.1em;"><div class="field-hint">6 цифр</div></div>
@@ -1840,9 +1669,9 @@ body {
           <div class="table-card">
             <table class="crm-table">
               <thead>
-                <tr><th>№ Заказа</th><th>Служба</th><th>Получатель</th><th>Товар</th><th>Статус</th><th>Дата</th></tr>
+                <tr><th>№ Заказа</th><th>Получатель</th><th>Товар</th><th>Статус</th><th>Дата</th></tr>
               </thead>
-              <tbody id="mo-tbody"><tr><td colspan="6" class="loading-msg">Загрузка...</td></tr></tbody>
+              <tbody id="mo-tbody"><tr><td colspan="5" class="loading-msg">Загрузка...</td></tr></tbody>
             </table>
           </div>
         </div>
@@ -1880,7 +1709,6 @@ body {
 const API = '/api';
 let token = localStorage.getItem('crm_token') || null;
 let me = JSON.parse(localStorage.getItem('crm_user') || 'null');
-let carrier = null;
 let npOn = false;
 let payChoice = 'seller';
 let myOrdersData = [];
@@ -1900,7 +1728,6 @@ async function api(method, path, body) {
   const res = await fetch(API + path, opts);
   const data = await res.json().catch(() => ({}));
 
-  // Auto-logout on session expired
   if (res.status === 401 && path !== '/auth/login') {
     token = null; me = null;
     localStorage.clear();
@@ -2144,14 +1971,13 @@ async function loadAllOrders() {
   if (!r.ok) return;
   const tbody = document.getElementById('ao-tbody');
   if (!r.data.orders.length) {
-    tbody.innerHTML = '<tr><td colspan="7" class="loading-msg">Нет заказов</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="6" class="loading-msg">Нет заказов</td></tr>';
     return;
   }
   tbody.innerHTML = r.data.orders.map(o => `
     <tr>
       <td class="mono" style="color:var(--g)">${o.order_num}</td>
       <td>${o.manager_name || '—'}</td>
-      <td><span class="pill ${o.carrier==='cdek'?'green':'blue'}">${o.carrier==='cdek'?'СДЭК':'Почта РФ'}</span></td>
       <td>${o.fio}</td>
       <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${o.product}</td>
       <td><span class="pill status-${o.status}">${STATUS_LABELS[o.status]||o.status}</span></td>
@@ -2168,18 +1994,8 @@ function initManager() {
   const initials = name.split(' ').slice(0,2).map(w => w[0]).join('').toUpperCase();
   document.getElementById('m-avatar').textContent = initials;
   document.getElementById('m-name').textContent = name;
-  loadMgrStats();
   clearOrderForm();
   document.getElementById('result-block').classList.remove('on');
-}
-
-async function loadMgrStats() {
-  const r = await api('GET', '/stats/manager');
-  if (!r.ok) return;
-  document.getElementById('s-total').textContent = r.data.total;
-  document.getElementById('s-shipped').textContent = r.data.shipped;
-  document.getElementById('s-pending').textContent = r.data.pending;
-  document.getElementById('s-delivered').textContent = r.data.delivered;
 }
 
 function mgrPanel(name, el) {
@@ -2200,22 +2016,6 @@ function tick() {
   if (el) el.textContent = new Date().toLocaleTimeString('ru-RU', {hour:'2-digit',minute:'2-digit',second:'2-digit'});
 }
 tick(); setInterval(tick, 1000);
-
-/* Carrier */
-function setCarrier(c) {
-  carrier = c;
-  document.getElementById('cb-cdek').className = 'carrier-btn' + (c==='cdek' ? ' cdek-on' : '');
-  document.getElementById('cb-post').className = 'carrier-btn' + (c==='post' ? ' post-on' : '');
-  document.getElementById('cdek-sec').className = 'form-section' + (c==='cdek' ? '' : ' hidden');
-  document.getElementById('post-sec').className = 'form-section' + (c==='post' ? '' : ' hidden');
-
-  const badge = document.getElementById('recip-badge');
-  if (c === 'cdek') { badge.className='fs-badge g'; badge.textContent='СДЭК'; badge.classList.remove('hidden'); }
-  else { badge.className='fs-badge b'; badge.textContent='Почта России'; badge.classList.remove('hidden'); }
-
-  const btn = document.getElementById('save-btn');
-  btn.className = c === 'post' ? 'btn-save-order b-mode' : 'btn-save-order';
-}
 
 /* NP */
 function toggleNP() {
@@ -2242,7 +2042,6 @@ function clearOrderForm() {
 
 /* Save order */
 async function saveOrder() {
-  if (!carrier) { alert('Выберите службу доставки'); return; }
   const fio   = document.getElementById('f-fio').value.trim();
   const phone = document.getElementById('f-phone').value.trim();
   const tg    = document.getElementById('f-tg').value.trim();
@@ -2254,37 +2053,27 @@ async function saveOrder() {
   if (!product) { alert('Укажите название товара'); return; }
   if (!size)    { alert('Укажите размер / вариант'); return; }
 
+  const idx = document.getElementById('f-index').value.trim();
+  const reg = document.getElementById('f-region').value.trim();
+  const cit = document.getElementById('f-post-city').value.trim();
+  const str = document.getElementById('f-street').value.trim();
+  const hs  = document.getElementById('f-house').value.trim();
+  const apt = document.getElementById('f-apt').value.trim();
+  if (!idx || !reg || !cit || !str || !hs) { alert('Заполните все обязательные поля адреса'); return; }
+  if (idx.length !== 6 || isNaN(idx)) { alert('Индекс должен быть 6 цифр'); return; }
+
   const body = {
-    carrier,
     fio, phone,
     telegram: tg || null,
     product, size_var: size,
     qty: parseInt(document.getElementById('f-qty').value) || 1,
     price: parseFloat(document.getElementById('f-price').value) || null,
     sku: document.getElementById('f-sku').value.trim() || null,
-    product_note: document.getElementById('f-pnote').value.trim() || null
+    product_note: document.getElementById('f-pnote').value.trim() || null,
+    post_index: idx, region: reg,
+    city: cit, street: str,
+    house: hs, apt: apt || null
   };
-
-  if (carrier === 'cdek') {
-    const city = document.getElementById('f-city').value.trim();
-    const addr = document.getElementById('f-cdek-addr').value.trim();
-    if (!city || !addr) { alert('Укажите город и адрес'); return; }
-    body.city = city;
-    body.delivery_type = document.getElementById('f-cdek-type').value;
-    body.address = addr;
-  } else {
-    const idx = document.getElementById('f-index').value.trim();
-    const reg = document.getElementById('f-region').value.trim();
-    const cit = document.getElementById('f-post-city').value.trim();
-    const str = document.getElementById('f-street').value.trim();
-    const hs  = document.getElementById('f-house').value.trim();
-    const apt = document.getElementById('f-apt').value.trim();
-    if (!idx || !reg || !cit || !str || !hs) { alert('Заполните все обязательные поля адреса'); return; }
-    if (idx.length !== 6 || isNaN(idx)) { alert('Индекс должен быть 6 цифр'); return; }
-    body.post_index = idx; body.region = reg;
-    body.city = cit; body.street = str;
-    body.house = hs; body.apt = apt || null;
-  }
 
   if (npOn) {
     const sum = document.getElementById('f-np-sum').value.trim();
@@ -2308,13 +2097,11 @@ async function saveOrder() {
     return;
   }
 
-  // Show result
   const orderNum = r.data.order_num;
   let rows = '';
   const rv = (k, v, cls='') => `<div class="result-row"><span class="rk">${k}</span><span class="rv ${cls}">${v}</span><button class="copy-btn" onclick="copyVal('${v.replace(/'/g,"\\'").replace(/"/g,'\\"')}',this)">copy</button></div>`;
 
   rows += rv('Номер заказа', orderNum, 'g');
-  rows += rv('Служба', carrier==='cdek'?'СДЭК':'Почта России', carrier==='cdek'?'g':'b');
   rows += rv('Товар', product);
   rows += rv('Размер / вариант', size);
   if (body.qty > 1) rows += rv('Количество', body.qty + ' шт.');
@@ -2323,31 +2110,23 @@ async function saveOrder() {
   rows += rv('ФИО', fio);
   rows += rv('Телефон', phone);
   if (tg) rows += rv('Telegram', '@' + tg.replace(/^@/,''), 'b');
-  if (carrier==='cdek') {
-    rows += rv('Город', body.city);
-    if (body.delivery_type) rows += rv('Тип получения', body.delivery_type);
-    rows += rv('Адрес / ПВЗ', body.address);
-  } else {
-    rows += rv('Индекс', body.post_index);
-    rows += rv('Регион', body.region);
-    rows += rv('Город', body.city);
-    rows += rv('Адрес', `${body.street}, ${body.house}${body.apt?', '+body.apt:''}`);
-  }
+  rows += rv('Индекс', body.post_index);
+  rows += rv('Регион', body.region);
+  rows += rv('Город', body.city);
+  rows += rv('Адрес', `${body.street}, ${body.house}${body.apt?', '+body.apt:''}`);
   if (npOn) {
     rows += rv('Наложенный платёж', body.np_sum.toLocaleString('ru-RU') + ' ₽', 'a');
     rows += rv('Доставку платит', payChoice==='seller'?'Продавец':'Покупатель');
   }
 
-  document.getElementById('res-label').textContent = 'Заказ сохранён — ' + (carrier==='cdek'?'СДЭК':'Почта России');
-  document.getElementById('res-dot').className = 'live-dot' + (carrier==='post'?' b':'');
+  document.getElementById('res-label').textContent = 'Заказ сохранён';
+  document.getElementById('res-dot').className = 'live-dot';
   document.getElementById('res-time').textContent = new Date().toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
   document.getElementById('res-body').innerHTML = rows;
 
   const rb = document.getElementById('result-block');
   rb.classList.add('on');
   rb.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-  loadMgrStats();
 }
 
 function copyVal(v, btn) {
@@ -2377,13 +2156,12 @@ function filterOrders() {
 function renderMyOrders(orders) {
   const tbody = document.getElementById('mo-tbody');
   if (!orders.length) {
-    tbody.innerHTML = '<tr><td colspan="6" class="loading-msg">Нет заказов</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="5" class="loading-msg">Нет заказов</td></tr>';
     return;
   }
   tbody.innerHTML = orders.map(o => `
     <tr>
       <td class="mono" style="color:var(--g)">${o.order_num}</td>
-      <td><span class="pill ${o.carrier==='cdek'?'green':'blue'}">${o.carrier==='cdek'?'СДЭК':'Почта РФ'}</span></td>
       <td>${o.fio}<br><span style="font-size:11px;color:var(--fog);">${o.phone}</span></td>
       <td>${o.product}<br><span style="font-size:11px;color:var(--fog);">${o.size_var||''}</span></td>
       <td><span class="pill status-${o.status}">${STATUS_LABELS[o.status]||o.status}</span></td>
