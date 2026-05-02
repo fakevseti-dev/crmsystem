@@ -46,7 +46,7 @@ db.exec(`
     id            INTEGER PRIMARY KEY AUTOINCREMENT,
     order_num     TEXT UNIQUE NOT NULL,
     manager_id    INTEGER NOT NULL,
-    carrier       TEXT NOT NULL,
+    carrier       TEXT NOT NULL DEFAULT 'post',
     status        TEXT NOT NULL DEFAULT 'new',
     fio           TEXT NOT NULL,
     phone         TEXT NOT NULL,
@@ -85,8 +85,6 @@ db.exec(`
 // Seed default accounts
 const hashPass = p => crypto.createHash('sha256').update(p).digest('hex');
 
-// seedUser replaced by seedUser2 below
-// Add plain_password column if not exists (migration)
 try { db.exec("ALTER TABLE users ADD COLUMN plain_password TEXT"); } catch(e) {}
 
 const seedUser2 = db.prepare(
@@ -109,7 +107,6 @@ function auth(req, res, next) {
   const token  = header.replace('Bearer ', '').trim();
   if (!token) return res.status(401).json({ error: 'Unauthorized' });
 
-  // Clean expired
   db.prepare(`DELETE FROM sessions WHERE expires_at < datetime('now')`).run();
 
   const session = db.prepare(
@@ -161,7 +158,6 @@ app.post('/api/auth/login', (req, res) => {
   if (user.login_blocked)
     return res.status(403).json({ error: user.login_err_msg || 'Аккаунт заблокирован.' });
 
-  // Remove old sessions for this user
   db.prepare('DELETE FROM sessions WHERE user_id = ?').run(user.id);
 
   const token = makeToken();
@@ -297,7 +293,7 @@ app.post('/api/orders', auth, (req, res) => {
   }
 
   const d = req.body || {};
-  if (!d.carrier || !d.fio || !d.phone || !d.product)
+  if (!d.fio || !d.phone || !d.product)
     return res.status(400).json({ error: 'Не заполнены обязательные поля.' });
 
   // Generate unique order number
@@ -314,7 +310,7 @@ app.post('/api/orders', auth, (req, res) => {
       np_enabled, np_sum, np_payer, np_note
     ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
   `).run(
-    orderNum, req.user.user_id, d.carrier, 'new',
+    orderNum, req.user.user_id, 'post', 'new',
     d.fio, d.phone, d.telegram || null,
     d.product, d.size_var || null,
     d.qty || 1, d.price || null, d.sku || null, d.product_note || null,
